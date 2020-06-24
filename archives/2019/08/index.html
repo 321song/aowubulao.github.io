@@ -130,14 +130,12 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://neo-img.oss-cn-shanghai.aliyuncs.com/bk.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
-              
-                归档
               
             </span>
 
@@ -169,13 +167,13 @@
       
       <p class="h5">2019</p>
     
-    <a href="/posts/Java%20TCP%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="list-group-item list-group-item-action">
+    <a href="/posts/java-tcp-program/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Java TCP文件上传小程序</span>
       <span style="float: right;">08-22</span>
     </a>
   
     
-    <a href="/posts/%E2%80%9C%E8%BF%87%E5%AE%8C%E8%BF%99%E4%B8%AA%E5%86%AC%E5%AD%A3%EF%BC%8C%E4%BD%A0%E6%98%AF%E5%90%A6%E4%B8%80%E5%A6%82%E5%BE%80%E6%98%94%E2%80%9D/" class="list-group-item list-group-item-action">
+    <a href="/posts/guo-wan-zhe-ge-dong-ji/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">“过完这个冬季，你是否一如往昔”</span>
       <span style="float: right;">08-22</span>
     </a>
@@ -229,10 +227,10 @@
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Neo's Blog | </span></a>
+      Themed By
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+        <span> Fluid</span></a>
     </div>
     
 
@@ -267,6 +265,24 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "归档&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
 
 

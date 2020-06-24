@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Neo">
   <meta name="keywords" content="">
-  <title>Java线程池的创建方法 - Neo&#39;s Blog</title>
+  <title>“过完这个冬季，你是否一如往昔” - Neo&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -139,14 +139,12 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://neo-img.oss-cn-shanghai.aliyuncs.com/zml/67621405_p0.jpg') no-repeat center center;
+         style="background: url('https://s2.ax1x.com/2020/03/10/8CL1xI.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
-              
-                Java线程池的创建方法
               
             </span>
 
@@ -154,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-28 20:08">
-      2020年3月28日 晚上
+    <time datetime="2019-08-22 16:23">
+      2019年8月22日 下午
     </time>
   </div>
 
@@ -165,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      899 字
+      119 字
     </span>
   
 
@@ -175,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      1
        分钟
     </span>
   
@@ -206,86 +204,22 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="1、自动创建（不推荐）"><a href="#1、自动创建（不推荐）" class="headerlink" title="1、自动创建（不推荐）"></a>1、自动创建（不推荐）</h2><p>在Java8以后，线程池的创建方法有5种，这里介绍3种常用的方法。</p>
-<pre><code class="hljs java">ExecutorService threadPool = Executors.newFixedThreadPool(<span class="hljs-number">5</span>);
-ExecutorService threadPool = Executors.newSingleThreadExecutor();
-ExecutorService threadPool = Executors.newCachedThreadPool();</code></pre>
+              <blockquote>
+<p>以前拍照，拍完过后都会直接p完发出来，特别急。现在就喜欢憋一憋了，一些好看的照片，会在硬盘上存着，等着哪天心情愉悦或是沮丧的时候，再把它们拿出来，发个朋友圈，微博。</p>
+</blockquote>
+<p>这是一组冬天的胶片，重庆的冬天，阳光和蓝天是特别珍贵的东西。所以我也按下了快门，把这些景色存在了胶片里</p>
+<hr>
+<img src="https://s2.ax1x.com/2020/03/10/8CL1xI.jpg" srcset="/img/loading.gif" />
 
-<p>第一种是创建一个定容的线程池；</p>
-<p>第二种是创建一个只有一个线程容量的线程池；</p>
-<p>第三种是创建一个带缓存可扩容的线程池。</p>
-<p>但是在使用时，阿里的代码检测工具会提示手动建立线程池。看一下源码：</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ExecutorService <span class="hljs-title">newFixedThreadPool</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nThreads)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,
-                                      <span class="hljs-number">0L</span>, TimeUnit.MILLISECONDS,
-                                      <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());
-&#125;
+<img src="https://s2.ax1x.com/2020/03/10/8CLUIg.jpg" srcset="/img/loading.gif"/>
 
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ExecutorService <span class="hljs-title">newSingleThreadExecutor</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FinalizableDelegatedExecutorService
-            (<span class="hljs-keyword">new</span> ThreadPoolExecutor(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>,
-                                    <span class="hljs-number">0L</span>, TimeUnit.MILLISECONDS,
-                                    <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;()));
-&#125;
+<img src="https://s2.ax1x.com/2020/03/10/8CL0Rs.jpg" srcset="/img/loading.gif" />
 
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ExecutorService <span class="hljs-title">newCachedThreadPool</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ThreadPoolExecutor(<span class="hljs-number">0</span>, Integer.MAX_VALUE,
-                                  <span class="hljs-number">60L</span>, TimeUnit.SECONDS,
-                                  <span class="hljs-keyword">new</span> SynchronousQueue&lt;Runnable&gt;());
-&#125;</code></pre>
+<img src="https://s2.ax1x.com/2020/03/10/8CLss0.jpg" srcset="/img/loading.gif" />
 
-<p>三种方法底层其实都是使用了new ThreadPoolExecutor的方式创建线程池，第三种的最大线程容量甚至达到了Integer.MAX_VALUE，如果允许线程池无限扩容的话，会创建非常多的线程。而前两种的主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。</p>
-<p>所以如何手动创建线程池是我们需要学习的。</p>
-<h2 id="手动创建线程池"><a href="#手动创建线程池" class="headerlink" title="手动创建线程池"></a>手动创建线程池</h2><p>我们可以通过new ThreadPoolExecutor的方式手动创建线程池，首先我们要了解构造方法的七个参数的具体含义。</p>
-<p>直接看代码：</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThreadPoolExecutor</span><span class="hljs-params">(</span></span>
-<span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">int</span> corePoolSize,</span></span>
-<span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">int</span> maximumPoolSize,</span></span>
-<span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">long</span> keepAliveTime,</span></span>
-<span class="hljs-function"><span class="hljs-params">    TimeUnit unit,</span></span>
-<span class="hljs-function"><span class="hljs-params">    BlockingQueue&lt;Runnable&gt; workQueue,</span></span>
-<span class="hljs-function"><span class="hljs-params">    ThreadFactory threadFactory,</span></span>
-<span class="hljs-function"><span class="hljs-params">    RejectedExecutionHandler handler)</span></span></code></pre>
+<img src="https://s2.ax1x.com/2020/03/10/8CL2oF.jpg" srcset="/img/loading.gif" />
 
-<p>corePoolSize：线程池中的常驻核心数线程；</p>
-<p>maximumPoolSize：线程池能够容纳的同时执行的最大线程数；</p>
-<p>keepAliveTime：多余的线程的存活时间；</p>
-<p>unit：对keepAliveTime 的时间单位；</p>
-<p>workQueue：任务队列，被提交但尚未被执行的任务；</p>
-<p>threadFactory：表示生成线程池中工作线程的线程工厂，用于创建线程；</p>
-<p>handler：拒绝策略，表示当队列满了并且工作线程大于等于线程池的最大线程数。</p>
-<pre><code class="hljs java">ExecutorService threadPool = <span class="hljs-keyword">new</span> ThreadPoolExecutor(<span class="hljs-number">2</span>,
-            <span class="hljs-number">5</span>,
-            <span class="hljs-number">1L</span>,
-            TimeUnit.SECONDS,
-            <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(<span class="hljs-number">3</span>),
-            Executors.defaultThreadFactory(),
-            <span class="hljs-keyword">new</span> ThreadPoolExecutor.AbortPolicy());</code></pre>
-
-<h3 id="拒绝策略"><a href="#拒绝策略" class="headerlink" title="拒绝策略"></a>拒绝策略</h3><p>定义：等待队列也已经排满了，再也塞不下新的任务了同时，线程池的max也到达了，无法接续为新任务服务这时我们需要拒绝策略机制合理的处理这个问题。</p>
-<p>JDK内置的拒绝策略：</p>
-<ul>
-<li><p>AbortPolicy(默认): 直接抛出RejectedException异常，阻止系统正常运行；</p>
-</li>
-<li><p>CallerRunPolicy:  不会抛异常，也不会抛弃任务，而是会将某些任务回退到调用它的线程。</p>
-<p>如：main调用了thread-pool-0计算1+1，而此时线程池已满，启动拒绝策略，会将这个任务返还给main线程，让main线程执行计算；</p>
-</li>
-<li><p>DiscardOldestPolicy: 抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交；</p>
-</li>
-<li><p>DiscardPolicy: 直接抛弃任务，不予任何处理，也不抛出异常。如果允许任务丢失，这是最好的方法。</p>
-</li>
-</ul>
-<h3 id="合理配置线程池的容量"><a href="#合理配置线程池的容量" class="headerlink" title="合理配置线程池的容量"></a>合理配置线程池的容量</h3><p>如何合理配置线程池？</p>
-<h4 id="CPU密集型"><a href="#CPU密集型" class="headerlink" title="CPU密集型"></a>CPU密集型</h4><p>CPU密集的意思是该任务需要大量的计算，而没有阻塞，CPU一直进行计算；</p>
-<p>一般公式：CPU核数+1个线程的线程池。</p>
-<h4 id="I-O密集型"><a href="#I-O密集型" class="headerlink" title="I/O密集型"></a>I/O密集型</h4><p>IO密集型不需要大量计算，而需要进行大量IO操作阻塞。</p>
-<p>IO密集型，大多线程都会阻塞，所以需要尽可能多的线程：</p>
-<ul>
-<li>CPU核数 / (1 - 阻塞系数) 阻塞系数在0.8-0.9之间</li>
-<li>CPU核数 * 2</li>
-</ul>
-<p>两种公式视场合使用。</p>
-
+<img src="https://s2.ax1x.com/2020/03/10/8CLfJJ.jpg" srcset="/img/loading.gif"/>
             </article>
             <hr>
             <div>
@@ -294,17 +228,10 @@ ExecutorService threadPool = Executors.newCachedThreadPool();</code></pre>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+                      <a class="hover-with-bg" href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
                     
                   </div>
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
-                    
-                  </div>
                 
               </div>
               
@@ -313,15 +240,15 @@ ExecutorService threadPool = Executors.newCachedThreadPool();</code></pre>
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/posts/java-tcp-program/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java TCP文件上传小程序</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
-                    
-                      <a href="/posts/volatile/">
-                        <span class="hidden-mobile">Java由volatile深入的一些问题</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </div>
                 </div>
@@ -388,10 +315,10 @@ ExecutorService threadPool = Executors.newCachedThreadPool();</code></pre>
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Neo's Blog | </span></a>
+      Themed By
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+        <span> Fluid</span></a>
     </div>
     
 
@@ -451,6 +378,24 @@ ExecutorService threadPool = Executors.newCachedThreadPool();</code></pre>
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "“过完这个冬季，你是否一如往昔”&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
 
 

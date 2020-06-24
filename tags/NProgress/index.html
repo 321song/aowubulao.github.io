@@ -130,14 +130,12 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://neo-img.oss-cn-shanghai.aliyuncs.com/bk.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
-              
-                标签 - NProgress
               
             </span>
 
@@ -169,7 +167,7 @@
       
       <p class="h5">2019</p>
     
-    <a href="/posts/%E4%BD%BF%E7%94%A8NProgress%E3%80%81axios%E6%8B%A6%E6%88%AA%E5%99%A8%E5%81%9A%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%E6%9D%A1/" class="list-group-item list-group-item-action">
+    <a href="/posts/nprogress/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">使用NProgress、axios拦截器做一个网页加载进度条</span>
       <span style="float: right;">12-29</span>
     </a>
@@ -223,10 +221,10 @@
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Neo's Blog | </span></a>
+      Themed By
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+        <span> Fluid</span></a>
     </div>
     
 
@@ -261,6 +259,24 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "标签 - NProgress&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
 
 

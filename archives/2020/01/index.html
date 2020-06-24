@@ -130,14 +130,12 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://neo-img.oss-cn-shanghai.aliyuncs.com/bk.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
-              
-                归档
               
             </span>
 
@@ -169,7 +167,7 @@
       
       <p class="h5">2020</p>
     
-    <a href="/posts/%E7%94%A8Java+%E9%98%BF%E9%87%8C%E4%BA%91oss%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%20%E5%90%8E%E5%8F%B0/" class="list-group-item list-group-item-action">
+    <a href="/posts/java-oss-img/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">用Java+阿里云oss搭建图床 后台</span>
       <span style="float: right;">01-01</span>
     </a>
@@ -223,10 +221,10 @@
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Neo's Blog | </span></a>
+      Themed By
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+        <span> Fluid</span></a>
     </div>
     
 
@@ -261,6 +259,24 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "归档&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
 
 
