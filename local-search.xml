@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Ssl pinning下的安卓免root抓包</title>
+    <link href="/posts/andriod-noroot-cap/"/>
+    <url>/posts/andriod-noroot-cap/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在研究安卓的App如何抓包，一开始想的很简单，以为就和浏览器F12里那样简单，所以直接搜了一个号称免root抓包的App到手机上。打开后发现应用都不能联网了。以为是软件的问题，遂百度了一番，开始用fiddler4抓包——结果还是，应用都没有网了。</p><h2 id="Ssl-Pinning"><a href="#Ssl-Pinning" class="headerlink" title="Ssl Pinning"></a>Ssl Pinning</h2><p>然后又是一阵的搜索，发现是Ssl Pinning搞的鬼，如果熟悉https的话，应该知道CA证书吧，用于检验请求双方的身份，防止中间人攻击。在抓包的时候，通常会在手机中设置一个代理，安装代理的证书，但这个证书是不被应用信任的，通过代理时，应用就不会发出请求，从而导致了没有网络的情况。</p><h2 id="Virtual-Xposed"><a href="#Virtual-Xposed" class="headerlink" title="Virtual Xposed"></a>Virtual Xposed</h2><p>现在问题的关键在于如何绕开Ssl Pinning的干扰，一个成熟的办法是手机root安装xposed模块+just trust me，可以在不被信任的情况下强制绕过，发出请求。</p><p>不过现在手机root都很麻烦，我试了一下用安装模拟器运行应用，但是很多应该在模拟器上都不能很好的运行甚至闪退。</p><p>这时候我发现了<a href="https://vxposed.com/" target="_blank" rel="noopener">Virtual Xposed</a>这个神器。一个虚拟的沙箱，自带一个root环境+xposed框架，软件也是轻量级的。</p><p>最后使用的模块是virtual xposed + trust me already，同时将要抓包的应用导入vx当中，运行，外部再使用Fiddler4抓包就ok了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>安卓</tag>
+      
+      <tag>抓包</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java线程池的创建方法</title>
     <link href="/posts/java-threadpool/"/>
     <url>/posts/java-threadpool/</url>
