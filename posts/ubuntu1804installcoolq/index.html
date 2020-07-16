@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Neo">
   <meta name="keywords" content="">
-  <title>Ssl pinning下的安卓免root抓包 - Neo&#39;s Blog</title>
+  <title>Ubuntu18.04安装Docker和酷Q - Neo&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-24 22:02">
-      2020年6月24日 晚上
+    <time datetime="2020-07-16 14:54">
+      2020年7月16日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      398 字
+      435 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -204,12 +204,47 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在研究安卓的App如何抓包，一开始想的很简单，以为就和浏览器F12里那样简单，所以直接搜了一个号称免root抓包的App到手机上。打开后发现应用都不能联网了。以为是软件的问题，遂百度了一番，开始用fiddler4抓包——结果还是，应用都没有网了。</p>
-<h2 id="Ssl-Pinning"><a href="#Ssl-Pinning" class="headerlink" title="Ssl Pinning"></a>Ssl Pinning</h2><p>然后又是一阵的搜索，发现是Ssl Pinning搞的鬼，如果熟悉https的话，应该知道CA证书吧，用于检验请求双方的身份，防止中间人攻击。在抓包的时候，通常会在手机中设置一个代理，安装代理的证书，但这个证书是不被应用信任的，通过代理时，应用就不会发出请求，从而导致了没有网络的情况。</p>
-<h2 id="Virtual-Xposed"><a href="#Virtual-Xposed" class="headerlink" title="Virtual Xposed"></a>Virtual Xposed</h2><p>现在问题的关键在于如何绕开Ssl Pinning的干扰，一个成熟的办法是手机root安装xposed模块+just trust me，可以在不被信任的情况下强制绕过，发出请求。</p>
-<p>不过现在手机root都很麻烦，我试了一下用安装模拟器运行应用，但是很多应该在模拟器上都不能很好的运行甚至闪退。</p>
-<p>这时候我发现了<a href="https://vxposed.com/" target="_blank" rel="noopener">Virtual Xposed</a>这个神器。一个虚拟的沙箱，自带一个root环境+xposed框架，软件也是轻量级的。</p>
-<p>最后使用的模块是virtual xposed + trust me already，同时将要抓包的应用导入vx当中，运行，外部再使用Fiddler4抓包就ok了。</p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近突然想玩一下QQ机器人，发现WEB QQ已经停止支持了，酷q只能在windows系统上运行。不巧的是我前一阵子才把仅有的一台Windows Server的服务器换成了Ubuntu，只能通过Docker中安装wine+酷q的形式运行了。</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h3 id="安装前"><a href="#安装前" class="headerlink" title="安装前"></a>安装前</h3><pre><code class="hljs shell">sudo apt update</code></pre>
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">sudo apt install docker.io -y</code></pre>
+
+<h3 id="安装完成后"><a href="#安装完成后" class="headerlink" title="安装完成后"></a>安装完成后</h3><pre><code class="hljs shell">systemctl start docker
+systemctl enable docker</code></pre>
+
+<p>检查Docker版本</p>
+<pre><code class="hljs shell">docker --version</code></pre>
+
+<p><img src="https://img.neoniou.com/blog/idfhai3412i3h.png" srcset="/img/loading.gif" alt=""></p>
+<h3 id="将Docker添加到非root用户"><a href="#将Docker添加到非root用户" class="headerlink" title="将Docker添加到非root用户"></a>将Docker添加到非root用户</h3><h4 id="1、创建新用户添加"><a href="#1、创建新用户添加" class="headerlink" title="1、创建新用户添加"></a>1、创建新用户添加</h4><pre><code class="hljs shell">useradd -m -s /bin/bash dockeruser
+passwd dockeruser
+
+usermod -aG docker dockeruser</code></pre>
+
+<p><strong>hello world!</strong></p>
+<pre><code class="hljs shell">su dockeruser
+docker run hello-world</code></pre>
+
+<p>提示下载后即可得到hello world</p>
+<h4 id="2、已有用户添加"><a href="#2、已有用户添加" class="headerlink" title="2、已有用户添加"></a>2、已有用户添加</h4><p>也可以参照上面的方法直接用已有的用户添加</p>
+<h2 id="安装酷-Q"><a href="#安装酷-Q" class="headerlink" title="安装酷 Q"></a>安装酷 Q</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">docker pull coolq/wine-coolq</code></pre>
+
+<h3 id="创建数据文件夹"><a href="#创建数据文件夹" class="headerlink" title="创建数据文件夹"></a>创建数据文件夹</h3><p>可以创建在任意路径</p>
+<pre><code class="hljs shell">mkdir /home/dockeruse/coolq-data</code></pre>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code class="hljs shell">docker run --name=coolq -d -p 7091:9000 -v /home/dockeruse/coolq-data:/home/user/coolq -e VNC_PASSWD=12345678 -e COOLQ_ACCOUNT=123456 coolq/wine-coolq</code></pre>
+
+<p>端口7091可以修改为自己想启动的端口，VNC_PASSWD为VNC链接的密码，COOLQ_ACCOUNT为QQ号，建议在启动容器时定好，以后连接会方便很多。</p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>浏览器访问：<strong>服务器IP:端口</strong>  即可</p>
+<h3 id="一些小坑"><a href="#一些小坑" class="headerlink" title="一些小坑"></a>一些小坑</h3><p>可能也不算坑，是我的理解不算太好，如果仔细看的话： </p>
+<pre><code class="hljs arduino">/<span class="hljs-built_in">home</span>/user/coolq</code></pre>
+
+<p>这个目录是不存在的，虽然酷Q的数据会在我们创建的数据文件夹里，但实际使用的并不是这个文件夹里的数据，上传插件后，结果还是找不到插件，从而开始怀疑人生。</p>
+<pre><code class="hljs shell">find / -name CQA.exe</code></pre>
+
+<p>我通过这个命令查找后</p>
+<p><img src="https://img.neoniou.com/blog/9RVVQWED62BNQ1.png" srcset="/img/loading.gif" alt=""></p>
+<p>才发现了真正的数据文件，这样就能正确上传插件了。</p>
 
             </article>
             <hr>
@@ -219,7 +254,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
                     
                   </div>
                 
@@ -227,9 +262,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>
+                      <a class="hover-with-bg" href="/tags/Ubuntu/">Ubuntu</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%8A%93%E5%8C%85/">抓包</a>
+                      <a class="hover-with-bg" href="/tags/%E9%85%B7Q/">酷Q</a>
                     
                   </div>
                 
@@ -240,18 +275,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/posts/ubuntu1804installcoolq/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Ubuntu18.04安装Docker和酷Q</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/posts/java-threadpool/">
-                        <span class="hidden-mobile">Java线程池的创建方法</span>
+                      <a href="/posts/andriod-noroot-cap/">
+                        <span class="hidden-mobile">Ssl pinning下的安卓免root抓包</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -390,7 +419,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Ssl pinning下的安卓免root抓包&nbsp;",
+        "Ubuntu18.04安装Docker和酷Q&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

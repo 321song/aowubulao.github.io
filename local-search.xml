@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Ubuntu18.04安装Docker和酷Q</title>
+    <link href="/posts/ubuntu1804installcoolq/"/>
+    <url>/posts/ubuntu1804installcoolq/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近突然想玩一下QQ机器人，发现WEB QQ已经停止支持了，酷q只能在windows系统上运行。不巧的是我前一阵子才把仅有的一台Windows Server的服务器换成了Ubuntu，只能通过Docker中安装wine+酷q的形式运行了。</p><h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h3 id="安装前"><a href="#安装前" class="headerlink" title="安装前"></a>安装前</h3><pre><code class="hljs shell">sudo apt update</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">sudo apt install docker.io -y</code></pre><h3 id="安装完成后"><a href="#安装完成后" class="headerlink" title="安装完成后"></a>安装完成后</h3><pre><code class="hljs shell">systemctl start dockersystemctl enable docker</code></pre><p>检查Docker版本</p><pre><code class="hljs shell">docker --version</code></pre><p><img src="https://img.neoniou.com/blog/idfhai3412i3h.png" srcset="/img/loading.gif" alt=""></p><h3 id="将Docker添加到非root用户"><a href="#将Docker添加到非root用户" class="headerlink" title="将Docker添加到非root用户"></a>将Docker添加到非root用户</h3><h4 id="1、创建新用户添加"><a href="#1、创建新用户添加" class="headerlink" title="1、创建新用户添加"></a>1、创建新用户添加</h4><pre><code class="hljs shell">useradd -m -s /bin/bash dockeruserpasswd dockeruserusermod -aG docker dockeruser</code></pre><p><strong>hello world!</strong></p><pre><code class="hljs shell">su dockeruserdocker run hello-world</code></pre><p>提示下载后即可得到hello world</p><h4 id="2、已有用户添加"><a href="#2、已有用户添加" class="headerlink" title="2、已有用户添加"></a>2、已有用户添加</h4><p>也可以参照上面的方法直接用已有的用户添加</p><h2 id="安装酷-Q"><a href="#安装酷-Q" class="headerlink" title="安装酷 Q"></a>安装酷 Q</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">docker pull coolq/wine-coolq</code></pre><h3 id="创建数据文件夹"><a href="#创建数据文件夹" class="headerlink" title="创建数据文件夹"></a>创建数据文件夹</h3><p>可以创建在任意路径</p><pre><code class="hljs shell">mkdir /home/dockeruse/coolq-data</code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code class="hljs shell">docker run --name=coolq -d -p 7091:9000 -v /home/dockeruse/coolq-data:/home/user/coolq -e VNC_PASSWD=12345678 -e COOLQ_ACCOUNT=123456 coolq/wine-coolq</code></pre><p>端口7091可以修改为自己想启动的端口，VNC_PASSWD为VNC链接的密码，COOLQ_ACCOUNT为QQ号，建议在启动容器时定好，以后连接会方便很多。</p><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>浏览器访问：<strong>服务器IP:端口</strong>  即可</p><h3 id="一些小坑"><a href="#一些小坑" class="headerlink" title="一些小坑"></a>一些小坑</h3><p>可能也不算坑，是我的理解不算太好，如果仔细看的话： </p><pre><code class="hljs arduino">/<span class="hljs-built_in">home</span>/user/coolq</code></pre><p>这个目录是不存在的，虽然酷Q的数据会在我们创建的数据文件夹里，但实际使用的并不是这个文件夹里的数据，上传插件后，结果还是找不到插件，从而开始怀疑人生。</p><pre><code class="hljs shell">find / -name CQA.exe</code></pre><p>我通过这个命令查找后</p><p><img src="https://img.neoniou.com/blog/9RVVQWED62BNQ1.png" srcset="/img/loading.gif" alt=""></p><p>才发现了真正的数据文件，这样就能正确上传插件了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Ubuntu</tag>
+      
+      <tag>酷Q</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Ssl pinning下的安卓免root抓包</title>
     <link href="/posts/andriod-noroot-cap/"/>
     <url>/posts/andriod-noroot-cap/</url>

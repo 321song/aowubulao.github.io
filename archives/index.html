@@ -160,12 +160,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/posts/ubuntu1804installcoolq/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Ubuntu18.04安装Docker和酷Q</span>
+      <span style="float: right;">07-16</span>
+    </a>
+  
     
     <a href="/posts/andriod-noroot-cap/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Ssl pinning下的安卓免root抓包</span>
@@ -223,13 +229,19 @@
       <span style="float: right;">08-22</span>
     </a>
   
-    
-    <a href="/posts/guo-wan-zhe-ge-dong-ji/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">“过完这个冬季，你是否一如往昔”</span>
-      <span style="float: right;">08-22</span>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
