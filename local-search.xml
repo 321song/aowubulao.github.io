@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>今日校园自动签到-云函数版使用说明</title>
+    <link href="/posts/auto-serverless-readme/"/>
+    <url>/posts/auto-serverless-readme/</url>
+    
+    <content type="html"><![CDATA[<h1 id="今日校园自动签到-云函数版"><a href="#今日校园自动签到-云函数版" class="headerlink" title="今日校园自动签到-云函数版"></a>今日校园自动签到-云函数版</h1><h3 id="1、使用前"><a href="#1、使用前" class="headerlink" title="1、使用前"></a>1、使用前</h3><p>目前只适用于西南大学晨晚检签到系统</p><p>本版本适合于没有服务器，或者不能长时间把服务挂在电脑上的人，不过部分设置比较麻烦，<del>以及本人对云函数并不算太熟悉，可能稳定性已经更新的及时性没有普通版本的高。</del> <strong>很稳</strong> =w=</p><p>不过此版本不需要在自己电脑上配置额外的环境，也算一个优点</p><p>如果你自己有服务器，或者嫌这个配置麻烦，就想挂在自己的电脑上</p><p>请使用这个版本：<a href="https://github.com/aowubulao/auto-cpdaily/tree/master" target="_blank" rel="noopener">https://github.com/aowubulao/auto-cpdaily/tree/master</a></p><h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a href="http://106.13.179.26/serverless.zip" target="_blank" rel="noopener">http://106.13.179.26/serverless.zip</a></p><p>解压后目录：</p><pre><code class="hljs nimrod">|-<span class="hljs-built_in">auto</span>-cpdaily-serverless.jar<span class="hljs-comment">#主程序</span>|-daily.properties<span class="hljs-comment">#配置文件</span></code></pre><h3 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h3><p>配置方法同普通版本，右键记事本打开 <strong>daily.properties</strong> 即可</p><pre><code class="hljs properties"><span class="hljs-comment">#学号</span><span class="hljs-attr">username</span>=<span class="hljs-string">xxxxxxxxxxxxxxx</span><span class="hljs-comment">#密码，为身份证后六位</span><span class="hljs-attr">password</span>=<span class="hljs-string">123456</span><span class="hljs-comment">#打卡位置，请使用 unicode 编码填写</span><span class="hljs-comment">#西南大学转换为 unicode编码 为 ：\u897f\u5357\u5927\u5b66</span><span class="hljs-comment">#改为你自己平时定位的地址名字即可，为中文地址</span><span class="hljs-comment">#可以在这个网站转换编码 http://tool.chinaz.com/Tools/Unicode.aspx?qq-pf-to=pcqq.c2c</span><span class="hljs-attr">position</span>=<span class="hljs-string">\u897f\u5357\u5927\u5b66</span><span class="hljs-comment">#打卡地址的经纬度，保留6位小数</span><span class="hljs-comment">#可以在这个网站查询打卡位置的经纬度 http://api.map.baidu.com/lbsapi/getpoint/</span><span class="hljs-attr">longitude</span>=<span class="hljs-string">106.430691</span><span class="hljs-attr">latitude</span>=<span class="hljs-string">29.826659</span></code></pre><h3 id="4、打包"><a href="#4、打包" class="headerlink" title="4、打包"></a>4、打包</h3><p>将配置文件打入包中</p><p>此步骤建议下载 7zip 解压软件(测试360压缩也可以)进行操作</p><p>地址：<a href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">https://www.7-zip.org/download.html</a></p><p><strong>右键 auto-cpdaily-serverless.jar —&gt; 7-zip —&gt; 打开压缩包</strong></p><p>用其他压缩软件应该也可以，右键用压缩软件打开即可，<strong>不要解压</strong></p><p>将 <strong>daily.properties</strong> 复制进压缩包中，然后关闭</p><h3 id="5、云函数"><a href="#5、云函数" class="headerlink" title="5、云函数"></a>5、云函数</h3><h4 id="1）申请"><a href="#1）申请" class="headerlink" title="1）申请"></a>1）申请</h4><p>搜索腾讯云，进入搜索云函数，申请即可，地址：<a href="https://console.cloud.tencent.com/scf/index?rid=1" target="_blank" rel="noopener">https://console.cloud.tencent.com/scf/index?rid=1</a></p><h4 id="2）创建"><a href="#2）创建" class="headerlink" title="2）创建"></a>2）创建</h4><p>申请完成后创建（新建函数）</p><p><strong>函数名称</strong>：随便填一个</p><p><strong>运行环境</strong>：选择Java8</p><p><strong>创建方式</strong>：模板函数</p><img src="https://img.neoniou.com/readme/auto-serverless-1.png" srcset="/img/loading.gif" style="zoom:80%;" /><p>然后点击下一步，此时有一个高级设置，展开高级设置，将<strong>超时时间</strong>设置为20s</p><img src="https://img.neoniou.com/readme/auto-serverless-2.png" srcset="/img/loading.gif" style="zoom: 80%;" /><p>点击<strong>完成</strong>即创建成功</p><h4 id="3）上传文件"><a href="#3）上传文件" class="headerlink" title="3）上传文件"></a>3）上传文件</h4><p>打开刚才创建的函数，在<strong>函数管理</strong>的<strong>函数代码</strong>中</p><p><strong>提交方法</strong>：本地上传Zip包</p><p><strong>执行方法</strong>：daily.AutoDailyCp::mainHandler</p><p>点击上传，将刚才打包好的文件上传至网页，最后点击<strong>保存</strong></p><img src="https://img.neoniou.com/readme/auto-serverless-3.png" srcset="/img/loading.gif" style="zoom: 80%;" /><h4 id="4）设置定时任务"><a href="#4）设置定时任务" class="headerlink" title="4）设置定时任务"></a>4）设置定时任务</h4><p>触发管理中，创建触发器，可以自己设定定时多久执行一次，可以设置为一小时执行一次或者半小时执行一次。</p><p>最后<strong>提交</strong>即可。</p><img src="https://img.neoniou.com/readme/auto-serverless-4.png" srcset="/img/loading.gif" style="zoom: 80%;" />]]></content>
+    
+    
+    <categories>
+      
+      <category>README</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>云函数</tag>
+      
+      <tag>今日校园</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Ubuntu18.04安装Docker和酷Q</title>
     <link href="/posts/ubuntu1804installcoolq/"/>
     <url>/posts/ubuntu1804installcoolq/</url>

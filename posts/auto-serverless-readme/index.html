@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Neo">
   <meta name="keywords" content="">
-  <title>Ubuntu18.04安装Docker和酷Q - Neo&#39;s Blog</title>
+  <title>今日校园自动签到-云函数版使用说明 - Neo&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-16 14:54">
-      2020年7月16日 下午
+    <time datetime="2020-07-21 09:20">
+      2020年7月21日 上午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      435 字
+      702 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        分钟
     </span>
   
@@ -204,48 +204,64 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近突然想玩一下QQ机器人，发现WEB QQ已经停止支持了，酷q只能在windows系统上运行。不巧的是我前一阵子才把仅有的一台Windows Server的服务器换成了Ubuntu，只能通过Docker中安装wine+酷q的形式运行了。</p>
-<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h3 id="安装前"><a href="#安装前" class="headerlink" title="安装前"></a>安装前</h3><pre><code class="hljs shell">sudo apt update</code></pre>
+              <h1 id="今日校园自动签到-云函数版"><a href="#今日校园自动签到-云函数版" class="headerlink" title="今日校园自动签到-云函数版"></a>今日校园自动签到-云函数版</h1><h3 id="1、使用前"><a href="#1、使用前" class="headerlink" title="1、使用前"></a>1、使用前</h3><p>目前只适用于西南大学晨晚检签到系统</p>
+<p>本版本适合于没有服务器，或者不能长时间把服务挂在电脑上的人，不过部分设置比较麻烦，<del>以及本人对云函数并不算太熟悉，可能稳定性已经更新的及时性没有普通版本的高。</del> <strong>很稳</strong> =w=</p>
+<p>不过此版本不需要在自己电脑上配置额外的环境，也算一个优点</p>
+<p>如果你自己有服务器，或者嫌这个配置麻烦，就想挂在自己的电脑上</p>
+<p>请使用这个版本：<a href="https://github.com/aowubulao/auto-cpdaily/tree/master" target="_blank" rel="noopener">https://github.com/aowubulao/auto-cpdaily/tree/master</a></p>
+<h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a href="http://106.13.179.26/serverless.zip" target="_blank" rel="noopener">http://106.13.179.26/serverless.zip</a></p>
+<p>解压后目录：</p>
+<pre><code class="hljs nimrod">|-<span class="hljs-built_in">auto</span>-cpdaily-serverless.jar	<span class="hljs-comment">#主程序</span>
+|-daily.properties				<span class="hljs-comment">#配置文件</span></code></pre>
 
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">sudo apt install docker.io -y</code></pre>
 
-<h3 id="安装完成后"><a href="#安装完成后" class="headerlink" title="安装完成后"></a>安装完成后</h3><pre><code class="hljs shell">systemctl start docker
-systemctl enable docker</code></pre>
 
-<p>检查Docker版本</p>
-<pre><code class="hljs shell">docker --version</code></pre>
+<h3 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h3><p>配置方法同普通版本，右键记事本打开 <strong>daily.properties</strong> 即可</p>
+<pre><code class="hljs properties"><span class="hljs-comment">#学号</span>
+<span class="hljs-attr">username</span>=<span class="hljs-string">xxxxxxxxxxxxxxx</span>
 
-<p><img src="https://img.neoniou.com/blog/idfhai3412i3h.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="将Docker添加到非root用户"><a href="#将Docker添加到非root用户" class="headerlink" title="将Docker添加到非root用户"></a>将Docker添加到非root用户</h3><h4 id="1、创建新用户添加"><a href="#1、创建新用户添加" class="headerlink" title="1、创建新用户添加"></a>1、创建新用户添加</h4><pre><code class="hljs shell">useradd -m -s /bin/bash dockeruser
-passwd dockeruser
+<span class="hljs-comment">#密码，为身份证后六位</span>
+<span class="hljs-attr">password</span>=<span class="hljs-string">123456</span>
 
-usermod -aG docker dockeruser</code></pre>
+<span class="hljs-comment">#打卡位置，请使用 unicode 编码填写</span>
+<span class="hljs-comment">#西南大学转换为 unicode编码 为 ：\u897f\u5357\u5927\u5b66</span>
+<span class="hljs-comment">#改为你自己平时定位的地址名字即可，为中文地址</span>
+<span class="hljs-comment">#可以在这个网站转换编码 http://tool.chinaz.com/Tools/Unicode.aspx?qq-pf-to=pcqq.c2c</span>
+<span class="hljs-attr">position</span>=<span class="hljs-string">\u897f\u5357\u5927\u5b66</span>
 
-<p><strong>hello world!</strong></p>
-<pre><code class="hljs shell">su dockeruser
-docker run hello-world</code></pre>
+<span class="hljs-comment">#打卡地址的经纬度，保留6位小数</span>
+<span class="hljs-comment">#可以在这个网站查询打卡位置的经纬度 http://api.map.baidu.com/lbsapi/getpoint/</span>
+<span class="hljs-attr">longitude</span>=<span class="hljs-string">106.430691</span>
+<span class="hljs-attr">latitude</span>=<span class="hljs-string">29.826659</span></code></pre>
 
-<p>提示下载后即可得到hello world</p>
-<h4 id="2、已有用户添加"><a href="#2、已有用户添加" class="headerlink" title="2、已有用户添加"></a>2、已有用户添加</h4><p>也可以参照上面的方法直接用已有的用户添加</p>
-<h2 id="安装酷-Q"><a href="#安装酷-Q" class="headerlink" title="安装酷 Q"></a>安装酷 Q</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell">docker pull coolq/wine-coolq</code></pre>
 
-<h3 id="创建数据文件夹"><a href="#创建数据文件夹" class="headerlink" title="创建数据文件夹"></a>创建数据文件夹</h3><p>可以创建在任意路径</p>
-<pre><code class="hljs shell">mkdir /home/dockeruse/coolq-data</code></pre>
 
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code class="hljs shell">docker run --name=coolq -d -p 7091:9000 -v /home/dockeruse/coolq-data:/home/user/coolq -e VNC_PASSWD=12345678 -e COOLQ_ACCOUNT=123456 coolq/wine-coolq</code></pre>
+<h3 id="4、打包"><a href="#4、打包" class="headerlink" title="4、打包"></a>4、打包</h3><p>将配置文件打入包中</p>
+<p>此步骤建议下载 7zip 解压软件(测试360压缩也可以)进行操作</p>
+<p>地址：<a href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">https://www.7-zip.org/download.html</a></p>
+<p><strong>右键 auto-cpdaily-serverless.jar —&gt; 7-zip —&gt; 打开压缩包</strong></p>
+<p>用其他压缩软件应该也可以，右键用压缩软件打开即可，<strong>不要解压</strong></p>
+<p>将 <strong>daily.properties</strong> 复制进压缩包中，然后关闭</p>
+<h3 id="5、云函数"><a href="#5、云函数" class="headerlink" title="5、云函数"></a>5、云函数</h3><h4 id="1）申请"><a href="#1）申请" class="headerlink" title="1）申请"></a>1）申请</h4><p>搜索腾讯云，进入搜索云函数，申请即可，地址：<a href="https://console.cloud.tencent.com/scf/index?rid=1" target="_blank" rel="noopener">https://console.cloud.tencent.com/scf/index?rid=1</a></p>
+<h4 id="2）创建"><a href="#2）创建" class="headerlink" title="2）创建"></a>2）创建</h4><p>申请完成后创建（新建函数）</p>
+<p><strong>函数名称</strong>：随便填一个</p>
+<p><strong>运行环境</strong>：选择Java8</p>
+<p><strong>创建方式</strong>：模板函数</p>
+<img src="https://img.neoniou.com/readme/auto-serverless-1.png" srcset="/img/loading.gif" style="zoom:80%;" />
 
-<p>端口7091可以修改为自己想启动的端口，VNC_PASSWD为VNC链接的密码，COOLQ_ACCOUNT为QQ号，建议在启动容器时定好，以后连接会方便很多。</p>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>浏览器访问：<strong>服务器IP:端口</strong>  即可</p>
-<h3 id="一些小坑"><a href="#一些小坑" class="headerlink" title="一些小坑"></a>一些小坑</h3><p>可能也不算坑，是我的理解不算太好，如果仔细看的话： </p>
-<pre><code class="hljs arduino">/<span class="hljs-built_in">home</span>/user/coolq</code></pre>
+<p>然后点击下一步，此时有一个高级设置，展开高级设置，将<strong>超时时间</strong>设置为20s</p>
+<img src="https://img.neoniou.com/readme/auto-serverless-2.png" srcset="/img/loading.gif" style="zoom: 80%;" />
 
-<p>这个目录是不存在的，虽然酷Q的数据会在我们创建的数据文件夹里，但实际使用的并不是这个文件夹里的数据，上传插件后，结果还是找不到插件，从而开始怀疑人生。</p>
-<pre><code class="hljs shell">find / -name CQA.exe</code></pre>
+<p>点击<strong>完成</strong>即创建成功</p>
+<h4 id="3）上传文件"><a href="#3）上传文件" class="headerlink" title="3）上传文件"></a>3）上传文件</h4><p>打开刚才创建的函数，在<strong>函数管理</strong>的<strong>函数代码</strong>中</p>
+<p><strong>提交方法</strong>：本地上传Zip包</p>
+<p><strong>执行方法</strong>：daily.AutoDailyCp::mainHandler</p>
+<p>点击上传，将刚才打包好的文件上传至网页，最后点击<strong>保存</strong></p>
+<img src="https://img.neoniou.com/readme/auto-serverless-3.png" srcset="/img/loading.gif" style="zoom: 80%;" />
 
-<p>我通过这个命令查找后</p>
-<p><img src="https://img.neoniou.com/blog/9RVVQWED62BNQ1.png" srcset="/img/loading.gif" alt=""></p>
-<p>才发现了真正的数据文件，这样就能正确上传插件了。</p>
-
+<h4 id="4）设置定时任务"><a href="#4）设置定时任务" class="headerlink" title="4）设置定时任务"></a>4）设置定时任务</h4><p>触发管理中，创建触发器，可以自己设定定时多久执行一次，可以设置为一小时执行一次或者半小时执行一次。</p>
+<p>最后<strong>提交</strong>即可。</p>
+<img src="https://img.neoniou.com/readme/auto-serverless-4.png" srcset="/img/loading.gif" style="zoom: 80%;" />
             </article>
             <hr>
             <div>
@@ -254,7 +270,7 @@ docker run hello-world</code></pre>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                      <a class="hover-with-bg" href="/categories/README/">README</a>
                     
                   </div>
                 
@@ -262,9 +278,9 @@ docker run hello-world</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Ubuntu/">Ubuntu</a>
+                      <a class="hover-with-bg" href="/tags/%E4%BA%91%E5%87%BD%E6%95%B0/">云函数</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%85%B7Q/">酷Q</a>
+                      <a class="hover-with-bg" href="/tags/%E4%BB%8A%E6%97%A5%E6%A0%A1%E5%9B%AD/">今日校园</a>
                     
                   </div>
                 
@@ -275,18 +291,12 @@ docker run hello-world</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/posts/auto-serverless-readme/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">今日校园自动签到-云函数版使用说明</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/posts/andriod-noroot-cap/">
-                        <span class="hidden-mobile">Ssl pinning下的安卓免root抓包</span>
+                      <a href="/posts/ubuntu1804installcoolq/">
+                        <span class="hidden-mobile">Ubuntu18.04安装Docker和酷Q</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -425,7 +435,7 @@ docker run hello-world</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Ubuntu18.04安装Docker和酷Q&nbsp;",
+        "今日校园自动签到-云函数版使用说明&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
