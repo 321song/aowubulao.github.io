@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      610 字
+      562 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      6
        分钟
     </span>
   
@@ -205,17 +205,17 @@
             
             <article class="markdown-body">
               <h1 id="今日校园自动签到-云函数版"><a href="#今日校园自动签到-云函数版" class="headerlink" title="今日校园自动签到-云函数版"></a>今日校园自动签到-云函数版</h1><h3 id="1、使用前"><a href="#1、使用前" class="headerlink" title="1、使用前"></a>1、使用前</h3><p><strong>有任何问题可以联系我：<a href="mailto:me@neow.cc">me@neow.cc</a></strong></p>
-<p><strong>或者在此页面提issue</strong></p>
 <p>目前只适用于西南大学晨晚检签到系统</p>
 <hr>
 <h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a href="http://106.13.179.26/serverless.zip" target="_blank" rel="noopener">下载链接1</a></p>
+<p>下载后请解压：</p>
 <p>解压后目录：</p>
 <pre><code class="hljs nimrod">|-<span class="hljs-built_in">auto</span>-cpdaily-serverless.jar	<span class="hljs-comment">#主程序</span>
 |-daily.properties				<span class="hljs-comment">#配置文件</span></code></pre>
 
 
 
-<h3 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h3><p>配置方法同普通版本，右键记事本打开 <strong>daily.properties</strong> 即可</p>
+<h3 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h3><p>右键记事本打开 <strong>daily.properties</strong> 即可</p>
 <pre><code class="hljs properties"><span class="hljs-comment">#学号</span>
 <span class="hljs-attr">username</span>=<span class="hljs-string">xxxxxxxxxxxxxxx</span>
 
@@ -236,10 +236,9 @@
 
 
 <h3 id="4、打包"><a href="#4、打包" class="headerlink" title="4、打包"></a>4、打包</h3><p>将配置文件打入包中</p>
-<p>此步骤建议下载 7zip 解压软件(测试360压缩也可以)进行操作</p>
+<p>此步骤建议下载 7zip 解压软件</p>
 <p>地址：<a href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">https://www.7-zip.org/download.html</a></p>
-<p><strong>右键 auto-cpdaily-serverless.jar —&gt; 7-zip —&gt; 打开压缩包</strong></p>
-<p>用其他压缩软件应该也可以，右键用压缩软件打开即可，<strong>不要解压</strong></p>
+<p><strong>右键 auto-cpdaily-serverless.jar</strong> 然后打开压缩包 <strong>不要解压</strong></p>
 <p>将 <strong>daily.properties</strong> 复制进压缩包中，然后关闭</p>
 <h3 id="5、云函数"><a href="#5、云函数" class="headerlink" title="5、云函数"></a>5、云函数</h3><h4 id="1）申请"><a href="#1）申请" class="headerlink" title="1）申请"></a>1）申请</h4><p>搜索腾讯云，进入搜索云函数，申请即可，地址：<a href="https://console.cloud.tencent.com/scf/index?rid=1" target="_blank" rel="noopener">https://console.cloud.tencent.com/scf/index?rid=1</a></p>
 <h4 id="2）创建"><a href="#2）创建" class="headerlink" title="2）创建"></a>2）创建</h4><p>申请完成后创建（新建函数）</p>
