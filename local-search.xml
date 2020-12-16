@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>工作前的一点学习计划</title>
+    <link href="/posts/before-work-study-list/"/>
+    <url>/posts/before-work-study-list/</url>
+    
+    <content type="html"><![CDATA[<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>之前收到了offer，最近公司那边也开始分配导师让我熟悉一下项目、架构之类的了，列一个学习List督促一下自己</p><h2 id="学习计划"><a href="#学习计划" class="headerlink" title="学习计划"></a>学习计划</h2><p>2020/12/16开始学习</p><ul><li><input disabled="" type="checkbox"> 复习JUC</li><li><input disabled="" type="checkbox"> 过一遍arthas文档</li><li><input disabled="" type="checkbox"> 学习dubbo，写一个Demo</li><li><input disabled="" type="checkbox"> 学习nacos</li><li><input disabled="" type="checkbox"> …</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java下位运算符</title>
     <link href="/posts/java-positional-operator/"/>
     <url>/posts/java-positional-operator/</url>
