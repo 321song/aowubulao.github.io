@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.neoniou.com/posts/spring-boot-nacos-dubbo/</loc>
+    
+    <lastmod>2020-12-18T08:45:43.563Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.neoniou.com/posts/before-work-study-list/</loc>
     
     <lastmod>2020-12-16T11:37:04.413Z</lastmod>
