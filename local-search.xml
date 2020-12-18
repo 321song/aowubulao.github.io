@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>SptingBoot2.x整合dubbo2.7.8 + nacos1.4.0</title>
+    <title>SpringBoot2.x整合dubbo2.7.8 + nacos1.4.0</title>
     <link href="/posts/spring-boot-nacos-dubbo/"/>
     <url>/posts/spring-boot-nacos-dubbo/</url>
     
@@ -20,11 +20,11 @@
     
     <tags>
       
-      <tag>spring-boot</tag>
-      
       <tag>dubbo</tag>
       
       <tag>nacos</tag>
+      
+      <tag>springboot</tag>
       
     </tags>
     
