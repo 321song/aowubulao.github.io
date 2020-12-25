@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.neoniou.com/posts/auto-serverless-readme/</loc>
+    
+    <lastmod>2020-12-25T03:20:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.neoniou.com/posts/spring-boot-nacos-dubbo/</loc>
     
     <lastmod>2020-12-18T08:49:19.726Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://blog.neoniou.com/about/index.html</loc>
     
     <lastmod>2020-07-24T13:44:00.026Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.neoniou.com/posts/auto-serverless-readme/</loc>
-    
-    <lastmod>2020-07-23T14:20:30.000Z</lastmod>
     
   </url>
   
