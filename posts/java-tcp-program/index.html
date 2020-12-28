@@ -235,90 +235,9 @@
             <div class="markdown-body">
               <p>一个基于TCP的简单的文件上传程序</p>
 <hr>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;
-<span class="hljs-keyword">import</span> java.net.*;
-<span class="hljs-keyword">import</span> java.util.Scanner;
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.net.*;<br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LocalClient</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">//文件路径和文件</span><br>        String filePath;<br>        Scanner sc = <span class="hljs-keyword">new</span> Scanner(System.in);<br>        System.out.println(<span class="hljs-string">"输入要上传的文件地址："</span>);<br>        filePath = sc.nextLine();<br>        <span class="hljs-comment">//创建本地字节输入流，读取文件</span><br>        FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(filePath);<br>        <span class="hljs-comment">//服务器地址及端口</span><br>        Socket socket = <span class="hljs-keyword">new</span> Socket(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">7222</span>);<br>        <span class="hljs-comment">//创建网络字节输出流，向服务器传递文件</span><br>        OutputStream os = socket.getOutputStream();<br>        <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>((len = fis.read(bytes)) != -<span class="hljs-number">1</span>) &#123;<br>            os.write(bytes, <span class="hljs-number">0</span>, len);<br>        &#125;<br>        <span class="hljs-comment">//shutdown结束上传</span><br>        socket.shutdownOutput();<br>        <span class="hljs-comment">//创建网络字节输入流，读取服务器传递的信息</span><br>        InputStream is = socket.getInputStream();<br>        <span class="hljs-keyword">while</span>((len = is.read(bytes)) != -<span class="hljs-number">1</span>) &#123;<br>            System.out.println(<span class="hljs-keyword">new</span> String(bytes, <span class="hljs-number">0</span>, len));<br>        &#125;<br>        <span class="hljs-comment">//关闭</span><br>        fis.close();<br>        socket.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LocalClient</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
-        <span class="hljs-comment">//文件路径和文件</span>
-        String filePath;
-        Scanner sc = <span class="hljs-keyword">new</span> Scanner(System.in);
-        System.out.println(<span class="hljs-string">"输入要上传的文件地址："</span>);
-        filePath = sc.nextLine();
-        <span class="hljs-comment">//创建本地字节输入流，读取文件</span>
-        FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(filePath);
-        <span class="hljs-comment">//服务器地址及端口</span>
-        Socket socket = <span class="hljs-keyword">new</span> Socket(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">7222</span>);
-        <span class="hljs-comment">//创建网络字节输出流，向服务器传递文件</span>
-        OutputStream os = socket.getOutputStream();
-        <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
-        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">while</span>((len = fis.read(bytes)) != -<span class="hljs-number">1</span>) &#123;
-            os.write(bytes, <span class="hljs-number">0</span>, len);
-        &#125;
-        <span class="hljs-comment">//shutdown结束上传</span>
-        socket.shutdownOutput();
-        <span class="hljs-comment">//创建网络字节输入流，读取服务器传递的信息</span>
-        InputStream is = socket.getInputStream();
-        <span class="hljs-keyword">while</span>((len = is.read(bytes)) != -<span class="hljs-number">1</span>) &#123;
-            System.out.println(<span class="hljs-keyword">new</span> String(bytes, <span class="hljs-number">0</span>, len));
-        &#125;
-        <span class="hljs-comment">//关闭</span>
-        fis.close();
-        socket.close();
-    &#125;
-&#125;</code></pre>
-
-<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;
-<span class="hljs-keyword">import</span> java.net.*;
-<span class="hljs-keyword">import</span> java.util.Random;
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Server</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
-        <span class="hljs-comment">//创建服务器端口</span>
-        ServerSocket server = <span class="hljs-keyword">new</span> ServerSocket(<span class="hljs-number">7222</span>);
-        <span class="hljs-comment">//使用while使服务器保持监听状态</span>
-        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;
-            <span class="hljs-comment">//接受客户端请求</span>
-            Socket socket = server.accept();
-            <span class="hljs-comment">//使用多线程上传</span>
-            <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;
-                <span class="hljs-meta">@Override</span>
-                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
-                    <span class="hljs-keyword">try</span> &#123;
-                        <span class="hljs-comment">//创建网络字节输入流，收取客户端上传的文件</span>
-                        InputStream is = socket.getInputStream();
-                        <span class="hljs-comment">//判断文件夹是否存在，不存在则创建文件夹</span>
-                        File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\UpdatePath"</span>);
-                        <span class="hljs-keyword">if</span> (!file.exists()) &#123;
-                            file.mkdirs();
-                        &#125;
-                        <span class="hljs-comment">//创建上传文件的命名规则</span>
-                        <span class="hljs-comment">//int nums = 0;</span>
-                        String fileName = <span class="hljs-string">"File"</span> + System.currentTimeMillis() + <span class="hljs-keyword">new</span> Random().nextInt(<span class="hljs-number">99</span>) + <span class="hljs-string">".zip"</span>;
-                        <span class="hljs-comment">//nums++;</span>
-                        <span class="hljs-comment">//创建本地字节输出流，向硬盘中保存文件</span>
-                        FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(file + <span class="hljs-string">"\\"</span> + fileName);
-                        <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
-                        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
-                        <span class="hljs-keyword">while</span> ((len = is.read(bytes)) != -<span class="hljs-number">1</span>) &#123;
-                            fos.write(bytes, <span class="hljs-number">0</span>, len);
-                        &#125;
-                        <span class="hljs-comment">//创建网络字节输出流，向客户端发送已经上传完成的信息</span>
-                        OutputStream os = socket.getOutputStream();
-                        os.write(<span class="hljs-string">"Update complete! =w= ~"</span>.getBytes());
-                        <span class="hljs-comment">//关闭</span>
-                        fos.close();
-                        socket.close();
-                    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
-                        System.out.println(e);
-                    &#125;
-                &#125;
-            &#125;).start();
-        &#125;
-        <span class="hljs-comment">//server.close();</span>
-    &#125;
-&#125;</code></pre>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.net.*;<br><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Server</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">//创建服务器端口</span><br>        ServerSocket server = <span class="hljs-keyword">new</span> ServerSocket(<span class="hljs-number">7222</span>);<br>        <span class="hljs-comment">//使用while使服务器保持监听状态</span><br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-comment">//接受客户端请求</span><br>            Socket socket = server.accept();<br>            <span class="hljs-comment">//使用多线程上传</span><br>            <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        <span class="hljs-comment">//创建网络字节输入流，收取客户端上传的文件</span><br>                        InputStream is = socket.getInputStream();<br>                        <span class="hljs-comment">//判断文件夹是否存在，不存在则创建文件夹</span><br>                        File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\UpdatePath"</span>);<br>                        <span class="hljs-keyword">if</span> (!file.exists()) &#123;<br>                            file.mkdirs();<br>                        &#125;<br>                        <span class="hljs-comment">//创建上传文件的命名规则</span><br>                        <span class="hljs-comment">//int nums = 0;</span><br>                        String fileName = <span class="hljs-string">"File"</span> + System.currentTimeMillis() + <span class="hljs-keyword">new</span> Random().nextInt(<span class="hljs-number">99</span>) + <span class="hljs-string">".zip"</span>;<br>                        <span class="hljs-comment">//nums++;</span><br>                        <span class="hljs-comment">//创建本地字节输出流，向硬盘中保存文件</span><br>                        FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(file + <span class="hljs-string">"\\"</span> + fileName);<br>                        <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>                        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;<br>                        <span class="hljs-keyword">while</span> ((len = is.read(bytes)) != -<span class="hljs-number">1</span>) &#123;<br>                            fos.write(bytes, <span class="hljs-number">0</span>, len);<br>                        &#125;<br>                        <span class="hljs-comment">//创建网络字节输出流，向客户端发送已经上传完成的信息</span><br>                        OutputStream os = socket.getOutputStream();<br>                        os.write(<span class="hljs-string">"Update complete! =w= ~"</span>.getBytes());<br>                        <span class="hljs-comment">//关闭</span><br>                        fos.close();<br>                        socket.close();<br>                    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                        System.out.println(e);<br>                    &#125;<br>                &#125;<br>            &#125;).start();<br>        &#125;<br>        <span class="hljs-comment">//server.close();</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>以后有空可以再完善一下，识别上传文件的文件类型和文件名</p>

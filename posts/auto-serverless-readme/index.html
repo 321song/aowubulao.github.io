@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      574 字
+      578 字
     </span>
   
 
@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年12月25日 上午
+                  本文最后更新于：2020年12月28日 晚上
                 
               </p>
             
@@ -237,31 +237,16 @@
 <p><strong>有任何问题可以联系我：<a href="mailto:me@neow.cc">me@neow.cc</a></strong></p>
 <p>目前只适用于西南大学晨晚检签到系统</p>
 <hr>
-<h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a href="http://106.14.251.237/serverless.zip" target="_blank" rel="noopener">下载链接1</a></p>
+<h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a href="https://share.neoniou.com/serverless.zip" target="_blank" rel="noopener">下载链接1</a></p>
+<p><a href="http://neowmoe.huangenet.cn/download/serverless.zip" target="_blank" rel="noopener">备用链接</a></p>
 <p>下载后请解压：</p>
 <p>解压后目录：</p>
-<pre><code class="hljs nimrod">|-<span class="hljs-built_in">auto</span>-cpdaily-serverless.jar	<span class="hljs-comment">#主程序</span>
-|-daily.properties				<span class="hljs-comment">#配置文件</span></code></pre>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nimrod">|-<span class="hljs-built_in">auto</span>-cpdaily-serverless.jar	<span class="hljs-comment">#主程序</span><br>|-daily.properties				<span class="hljs-comment">#配置文件</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="3、配置"><a href="#3、配置" class="headerlink" title="3、配置"></a>3、配置</h3><p>右键记事本打开 <strong>daily.properties</strong> 即可</p>
-<pre><code class="hljs properties"><span class="hljs-comment">#学号</span>
-<span class="hljs-attr">username</span>=<span class="hljs-string">xxxxxxxxxxxxxxx</span>
-
-<span class="hljs-comment">#密码，为身份证后六位</span>
-<span class="hljs-attr">password</span>=<span class="hljs-string">123456</span>
-
-<span class="hljs-comment">#打卡位置，请使用 unicode 编码填写</span>
-<span class="hljs-comment">#西南大学转换为 unicode编码 为 ：\u897f\u5357\u5927\u5b66</span>
-<span class="hljs-comment">#改为你自己平时定位的地址名字即可，为中文地址</span>
-<span class="hljs-comment">#可以在这个网站转换编码 http://tool.chinaz.com/Tools/Unicode.aspx?qq-pf-to=pcqq.c2c</span>
-<span class="hljs-attr">position</span>=<span class="hljs-string">\u897f\u5357\u5927\u5b66</span>
-
-<span class="hljs-comment">#打卡地址的经纬度，保留6位小数</span>
-<span class="hljs-comment">#可以在这个网站查询打卡位置的经纬度 http://api.map.baidu.com/lbsapi/getpoint/</span>
-<span class="hljs-attr">longitude</span>=<span class="hljs-string">106.430691</span>
-<span class="hljs-attr">latitude</span>=<span class="hljs-string">29.826659</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#学号</span><br><span class="hljs-attr">username</span>=<span class="hljs-string">xxxxxxxxxxxxxxx</span><br><br><span class="hljs-comment">#密码，为身份证后六位</span><br><span class="hljs-attr">password</span>=<span class="hljs-string">123456</span><br><br><span class="hljs-comment">#打卡位置，请使用 unicode 编码填写</span><br><span class="hljs-comment">#西南大学转换为 unicode编码 为 ：\u897f\u5357\u5927\u5b66</span><br><span class="hljs-comment">#改为你自己平时定位的地址名字即可，为中文地址</span><br><span class="hljs-comment">#可以在这个网站转换编码 http://tool.chinaz.com/Tools/Unicode.aspx?qq-pf-to=pcqq.c2c</span><br><span class="hljs-attr">position</span>=<span class="hljs-string">\u897f\u5357\u5927\u5b66</span><br><br><span class="hljs-comment">#打卡地址的经纬度，保留6位小数</span><br><span class="hljs-comment">#可以在这个网站查询打卡位置的经纬度 http://api.map.baidu.com/lbsapi/getpoint/</span><br><span class="hljs-attr">longitude</span>=<span class="hljs-string">106.430691</span><br><span class="hljs-attr">latitude</span>=<span class="hljs-string">29.826659</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -295,7 +280,7 @@
 
 
 <h4 id="4）设置定时任务"><a href="#4）设置定时任务" class="headerlink" title="4）设置定时任务"></a>4）设置定时任务</h4><p>触发管理中，创建触发器，建议设置为：（如图）</p>
-<pre><code class="hljs basic"><span class="hljs-symbol">0 </span><span class="hljs-number">0</span> <span class="hljs-number">9</span>,<span class="hljs-number">20</span> * * * *</code></pre>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">0 </span><span class="hljs-number">0</span> <span class="hljs-number">9</span>,<span class="hljs-number">20</span> * * * *<br></code></pre></td></tr></table></figure>
 
 <p>这个表示每天9点，20点运行一次，具体时间可以根据你们学院的时间修改一下</p>
 <p>最后<strong>提交</strong>即可。</p>

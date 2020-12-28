@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      17
        分钟
     </span>
   
@@ -241,11 +241,7 @@
 <li>当链表长度&gt;64以及链表长度&gt;8时，链表将转化为红黑树。当红黑树结点小于6时，再转换为链表。</li>
 </ol>
 <h2 id="1、HashMap的储存过程"><a href="#1、HashMap的储存过程" class="headerlink" title="1、HashMap的储存过程"></a>1、HashMap的储存过程</h2><p>首先来看一下HashMap的储存过程。</p>
-<pre><code class="hljs java">HashMap&lt;String, String&gt; hashMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
-hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"19"</span>);
-hashMap.put(<span class="hljs-string">"Cc"</span>, <span class="hljs-string">"17"</span>);
-hashMap.put(<span class="hljs-string">"BB"</span>, <span class="hljs-string">"20"</span>);
-hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"30"</span>);</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">HashMap&lt;String, String&gt; hashMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"19"</span>);<br>hashMap.put(<span class="hljs-string">"Cc"</span>, <span class="hljs-string">"17"</span>);<br>hashMap.put(<span class="hljs-string">"BB"</span>, <span class="hljs-string">"20"</span>);<br>hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"30"</span>);<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://img.neoniou.com/md/mianshi/image-20200318164927987.png" srcset="/img/loading.gif" alt="image-20200318164927987"></p>
 <p>整个储存过程如下：</p>
@@ -258,14 +254,11 @@ hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"30
 </ol>
 <h4 id="问题1：HashMap底层通过什么方式计算Hash值？还有哪些方法可以用于计算Hash值？"><a href="#问题1：HashMap底层通过什么方式计算Hash值？还有哪些方法可以用于计算Hash值？" class="headerlink" title="问题1：HashMap底层通过什么方式计算Hash值？还有哪些方法可以用于计算Hash值？"></a>问题1：HashMap底层通过什么方式计算Hash值？还有哪些方法可以用于计算Hash值？</h4><p>HashMap底层采用位运算计算，还可以通过伪随机数和取余进行计算。（取余在计算机底层效率很低，所以不使用）</p>
 <h4 id="问题2：什么是Hash碰撞，如何解决？"><a href="#问题2：什么是Hash碰撞，如何解决？" class="headerlink" title="问题2：什么是Hash碰撞，如何解决？"></a>问题2：什么是Hash碰撞，如何解决？</h4><p>不同的键计算Hash值索引相同即会产生Hash碰撞，通过链表+红黑树的方法解决。</p>
-<h2 id="2、HashMap的成员变量"><a href="#2、HashMap的成员变量" class="headerlink" title="2、HashMap的成员变量"></a>2、HashMap的成员变量</h2><h3 id="2-1、默认容量"><a href="#2-1、默认容量" class="headerlink" title="2.1、默认容量"></a>2.1、默认容量</h3><pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * The default initial capacity - MUST be a power of two.</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>; <span class="hljs-comment">// aka 16</span></code></pre>
+<h2 id="2、HashMap的成员变量"><a href="#2、HashMap的成员变量" class="headerlink" title="2、HashMap的成员变量"></a>2、HashMap的成员变量</h2><h3 id="2-1、默认容量"><a href="#2-1、默认容量" class="headerlink" title="2.1、默认容量"></a>2.1、默认容量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * The default initial capacity - MUST be a power of two.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>; <span class="hljs-comment">// aka 16</span><br></code></pre></td></tr></table></figure>
 
 <p>HashMap默认容量为16，且容量必须是2的n次幂。即使赋值不是2的n次幂，在底层也会转换为2的n次幂。</p>
 <p><strong>举个栗子</strong>：</p>
-<pre><code class="hljs java">HashMap&lt;String, String&gt; hashMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(<span class="hljs-number">10</span>);</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">HashMap&lt;String, String&gt; hashMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(<span class="hljs-number">10</span>);<br></code></pre></td></tr></table></figure>
 
 <p>在底层10会变为比它大的最小的2的n次幂：10-&gt;16。以此类推7-&gt;8。</p>
 <h4 id="问题3：为什么HashMap容量必须是2的n次幂？"><a href="#问题3：为什么HashMap容量必须是2的n次幂？" class="headerlink" title="问题3：为什么HashMap容量必须是2的n次幂？"></a>问题3：为什么HashMap容量必须是2的n次幂？</h4><p>为了减少Hash碰撞。</p>
@@ -285,30 +278,17 @@ hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"30
 <p>hash值：        2    00000010</p>
 <p>length-1:         8    00001000，位运算结果：00000000，即索引为 0</p>
 <p>产生hash碰撞</p>
-<h3 id="2-2、负载因子"><a href="#2-2、负载因子" class="headerlink" title="2.2、负载因子"></a>2.2、负载因子</h3><pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * The load factor used when none specified in constructor.</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="hljs-number">0.75f</span>;</code></pre>
+<h3 id="2-2、负载因子"><a href="#2-2、负载因子" class="headerlink" title="2.2、负载因子"></a>2.2、负载因子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * The load factor used when none specified in constructor.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="hljs-number">0.75f</span>;<br></code></pre></td></tr></table></figure>
 
 <p>HashMap负载因子为0.75</p>
 <p><strong>什么是负载因子？</strong>HashMap默认容量为16，当储存达到16*0.75=12时，便会执行扩容操作</p>
 <p>threshold = capacity（默认长度16） * loadFactory（默认负载因子0.75）。这个值是是当前已经占用的数组长度的最大值，当size &gt;= threshold时，便会执行扩容。</p>
 <h4 id="问题4：为什么负载因子设置为0-75？"><a href="#问题4：为什么负载因子设置为0-75？" class="headerlink" title="问题4：为什么负载因子设置为0.75？"></a>问题4：为什么负载因子设置为0.75？</h4><p>如果负载因子过小，则数组利用率会降低，加载因子过大，链表数量又会过多。所以兼顾利用率和链表长度，0.75是一个衡量后比较平衡的值。</p>
-<h3 id="2-3、红黑树链表转换"><a href="#2-3、红黑树链表转换" class="headerlink" title="2.3、红黑树链表转换"></a>2.3、红黑树链表转换</h3><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TREEIFY_THRESHOLD = <span class="hljs-number">8</span>;
-
-<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UNTREEIFY_THRESHOLD = <span class="hljs-number">6</span>;</code></pre>
+<h3 id="2-3、红黑树链表转换"><a href="#2-3、红黑树链表转换" class="headerlink" title="2.3、红黑树链表转换"></a>2.3、红黑树链表转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TREEIFY_THRESHOLD = <span class="hljs-number">8</span>;<br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UNTREEIFY_THRESHOLD = <span class="hljs-number">6</span>;<br></code></pre></td></tr></table></figure>
 
 <p>链表长度为8时：链表-&gt;红黑树，红黑树结点减少到6：红黑树-&gt;链表。</p>
 <h4 id="问题5：为什么链表长度为8时转换为红黑树？"><a href="#问题5：为什么链表长度为8时转换为红黑树？" class="headerlink" title="问题5：为什么链表长度为8时转换为红黑树？"></a>问题5：为什么链表长度为8时转换为红黑树？</h4><p>根据泊松分布，HashMap中链表长度从0-&gt;8的概率是：</p>
-<pre><code class="hljs angelscript"><span class="hljs-number">0</span>:    <span class="hljs-number">0.60653066</span>
-<span class="hljs-number">1</span>:    <span class="hljs-number">0.30326533</span>
-<span class="hljs-number">2</span>:    <span class="hljs-number">0.07581633</span>
-<span class="hljs-number">3</span>:    <span class="hljs-number">0.01263606</span>
-<span class="hljs-number">4</span>:    <span class="hljs-number">0.00157952</span>
-<span class="hljs-number">5</span>:    <span class="hljs-number">0.00015795</span>
-<span class="hljs-number">6</span>:    <span class="hljs-number">0.00001316</span>
-<span class="hljs-number">7</span>:    <span class="hljs-number">0.00000094</span>
-<span class="hljs-number">8</span>:    <span class="hljs-number">0.00000006</span></code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">0</span>:    <span class="hljs-number">0.60653066</span><br><span class="hljs-number">1</span>:    <span class="hljs-number">0.30326533</span><br><span class="hljs-number">2</span>:    <span class="hljs-number">0.07581633</span><br><span class="hljs-number">3</span>:    <span class="hljs-number">0.01263606</span><br><span class="hljs-number">4</span>:    <span class="hljs-number">0.00157952</span><br><span class="hljs-number">5</span>:    <span class="hljs-number">0.00015795</span><br><span class="hljs-number">6</span>:    <span class="hljs-number">0.00001316</span><br><span class="hljs-number">7</span>:    <span class="hljs-number">0.00000094</span><br><span class="hljs-number">8</span>:    <span class="hljs-number">0.00000006</span><br></code></pre></td></tr></table></figure>
 
 <p>因为红黑树占用的内存空间是链表的两倍，链表长度达到8已经是很小的概率，从而为了增加查找速度，才转换为红黑树。</p>
 <p>红黑树平均查找复杂度是Log(n)，如果长度为8，Log(8)=3，链表的平均查找复杂度是n/2，长度为8时，8/2=4；这才有转换为红黑树的必要。</p>
@@ -335,7 +315,7 @@ hashMap.put(<span class="hljs-string">"Aa"</span>, <span class="hljs-string">"30
 <li><p>contains方法有区别，HashMap去掉了contains方法，改为containsKey和containsValue；</p>
 </li>
 <li><p>在HashMap中，key-value都支持null值，HashTable中则不支持；</p>
-<pre><code class="hljs java"><span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br></code></pre></td></tr></table></figure>
 
 <p>HashMap通过将null值的key转换为0从而达到储存null值的key-value，而HashTable中则没有这个转换过程。</p>
 </li>

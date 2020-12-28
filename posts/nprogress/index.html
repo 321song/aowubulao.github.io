@@ -234,46 +234,15 @@
             
             <div class="markdown-body">
               <p>写前端的时候，想写一个顶部的进度条功能，然后就找到了NProgress。加上axios的拦截器，可以很方便的做一个顶部进度条的样式。</p>
-<h3 id="1、安装-Nprogress"><a href="#1、安装-Nprogress" class="headerlink" title="1、安装 Nprogress"></a>1、安装 Nprogress</h3><pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> nprogress <span class="hljs-comment">--save</span></code></pre>
+<h3 id="1、安装-Nprogress"><a href="#1、安装-Nprogress" class="headerlink" title="1、安装 Nprogress"></a>1、安装 Nprogress</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> nprogress <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2、创建aixos-js文件"><a href="#2、创建aixos-js文件" class="headerlink" title="2、创建aixos.js文件"></a>2、创建aixos.js文件</h3><p>写入</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
-<span class="hljs-keyword">import</span> NProgress <span class="hljs-keyword">from</span> <span class="hljs-string">"nprogress"</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'nprogress/nprogress.css'</span>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span><br><span class="hljs-keyword">import</span> NProgress <span class="hljs-keyword">from</span> <span class="hljs-string">"nprogress"</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">'nprogress/nprogress.css'</span><br><br>axios.interceptors.request.use(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>        NProgress.inc();<br>        <span class="hljs-keyword">return</span> config;<br>    &#125;, error =&gt; &#123;<br>        NProgress.done();<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)<br>    &#125;<br>)<br>axios.interceptors.response.use(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>        NProgress.done();<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;, error =&gt; &#123;<br>        NProgress.done();<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)<br>    &#125;<br>)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    NProgress<br>&#125;<br></code></pre></td></tr></table></figure>
 
-axios.interceptors.request.use(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
-        NProgress.inc();
-        <span class="hljs-keyword">return</span> config;
-    &#125;, error =&gt; &#123;
-        NProgress.done();
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)
-    &#125;
-)
-axios.interceptors.response.use(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
-        NProgress.done();
-        <span class="hljs-keyword">return</span> res;
-    &#125;, error =&gt; &#123;
-        NProgress.done();
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)
-    &#125;
-)
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-    NProgress
-&#125;</code></pre>
-
-<h3 id="3、在main-js中引入"><a href="#3、在main-js中引入" class="headerlink" title="3、在main.js中引入"></a>3、在main.js中引入</h3><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"./plugins/axios"</span>;
-...
-
-<span class="hljs-keyword">new</span> Vue(&#123;
-    ...
-    axios,
-    ...
-    render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)
-&#125;).$mount(<span class="hljs-string">'#app'</span>)</code></pre>
+<h3 id="3、在main-js中引入"><a href="#3、在main-js中引入" class="headerlink" title="3、在main.js中引入"></a>3、在main.js中引入</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"./plugins/axios"</span>;<br>...<br><br><span class="hljs-keyword">new</span> Vue(&#123;<br>    ...<br>    axios,<br>    ...<br>    render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)<br>&#125;).$mount(<span class="hljs-string">'#app'</span>)<br></code></pre></td></tr></table></figure>
 
 <h3 id="4、修改样式"><a href="#4、修改样式" class="headerlink" title="4、修改样式"></a>4、修改样式</h3><p>如果需要修改进度条样式，可以把nprogress.css提取出来，然后引入：</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'../../src/assets/css/nprogress.css'</span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'../../src/assets/css/nprogress.css'</span><br></code></pre></td></tr></table></figure>
 
 
             </div>

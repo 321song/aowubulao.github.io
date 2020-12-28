@@ -235,18 +235,13 @@
             <div class="markdown-body">
               <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>以前刷题，以及学计算机系统这些东西的时候经常碰到位运算符，也只是了解个大概，今天系统地学习总结了一下。</p>
 <h2 id="1-位运算符"><a href="#1-位运算符" class="headerlink" title="1.位运算符"></a>1.位运算符</h2><p>Java下位运算符有这些：</p>
-<h3 id="1-1-amp-与"><a href="#1-1-amp-与" class="headerlink" title="1.1 &amp; 与"></a>1.1 &amp; 与</h3><pre><code class="hljs Java"><span class="hljs-keyword">int</span> num1 = <span class="hljs-number">56</span>;
-<span class="hljs-keyword">int</span> num2 = <span class="hljs-number">55</span>;
-
-System.out.println(num1 &amp; num2);</code></pre>
+<h3 id="1-1-amp-与"><a href="#1-1-amp-与" class="headerlink" title="1.1 &amp; 与"></a>1.1 &amp; 与</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">int</span> num1 = <span class="hljs-number">56</span>;<br><span class="hljs-keyword">int</span> num2 = <span class="hljs-number">55</span>;<br><br>System.out.println(num1 &amp; num2);<br></code></pre></td></tr></table></figure>
 
 <p>与运算下，可以把01理解为false 与 true，那么 1 &amp; 1 = 1,  1 &amp; 0 = 0,  0 &amp; 0 = 0</p>
 <p><img src="https://neo-img.oss-cn-shanghai.aliyuncs.com/blog/jpo/jpo1.png" srcset="/img/loading.gif" alt=""></p>
 <h3 id="1-2-或"><a href="#1-2-或" class="headerlink" title="1.2 | 或"></a>1.2 | 或</h3><p>同与运算 1 | 1 = 1, 1 | 0 = 1, 0 | 0 = 0</p>
 <p><img src="https://neo-img.oss-cn-shanghai.aliyuncs.com/blog/jpo/jpo2.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="1-3-取反"><a href="#1-3-取反" class="headerlink" title="1.3 ~ 取反"></a>1.3 ~ 取反</h3><pre><code class="hljs java"><span class="hljs-keyword">int</span> num1 = <span class="hljs-number">56</span>;
-
-System.out.println( ~num1 ); <span class="hljs-comment">// -57</span></code></pre>
+<h3 id="1-3-取反"><a href="#1-3-取反" class="headerlink" title="1.3 ~ 取反"></a>1.3 ~ 取反</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> num1 = <span class="hljs-number">56</span>;<br><br>System.out.println( ~num1 ); <span class="hljs-comment">// -57</span><br></code></pre></td></tr></table></figure>
 
 <p>取反就更好理解了</p>
 <p>1变0, 0变1</p>
